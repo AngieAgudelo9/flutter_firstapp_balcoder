@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firstapp_balcoder/ui/second_page.dart';
+import 'package:flutter_firstapp_balcoder/ui/user/user_form_page.dart';
 
 class PracticaPage extends StatefulWidget {
   @override
@@ -69,13 +69,12 @@ class _PracticaPageState extends State<PracticaPage> {
 
                     onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (_){
-                    return SecondPage ();
+                    return UserFormPage (data: "pasando data");
 
                     }));
-
-
                     },
                     child: Container(
+                      child: Center(child: Text( "Formulario", style: TextStyle( color: Colors.white))),
                         height: _height * 0.1,
                         width: _width * 0.1,
                         color: Colors.red),
