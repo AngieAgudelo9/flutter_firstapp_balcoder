@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firstapp_balcoder/ui/user/dashboard_widget.dart';
+import 'package:flutter_firstapp_balcoder/ui/user/model/user_model.dart';
 import 'package:flutter_firstapp_balcoder/ui/user/user_form_page.dart';
 
 class PracticaPage extends StatefulWidget {
@@ -11,6 +13,9 @@ class _PracticaPageState extends State<PracticaPage> {
   int count = 0;
   double decimalNumer = 4.5;
   bool myBool = false;
+
+  //List: variable que se utiliza para ir almacenado lo que se encuentre dentro de una lista.
+  List<UserModel> _userList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -41,23 +46,23 @@ class _PracticaPageState extends State<PracticaPage> {
                         fontSize: 24.0,
                       ))),
 
-                      GestureDetector(
-                        onTap: (){
-                        print("ONTAP");
-                        
+              GestureDetector(
+                  onTap: () {
+                    print("ONTAP");
 
-                        setState(() {
-                          myBool = !myBool;
-                        });
+                    setState(() {
+                      myBool = !myBool;
+                    });
+                  },
+                  child: Container(
+                      height: _height * 0.10,
+                      width: _width * 0.10,
+                      color: myBool
+                          ? Colors.blue
+                          : count > 2
+                              ? Colors.black
+                              : Colors.orangeAccent)),
 
-                        },
-                        child: 
-              Container(
-                        height: _height * 0.10,
-                  width: _width * 0.10,
-                  color: myBool ?  Colors.blue : count > 2 ? Colors.black : Colors.orangeAccent ) 
-                        ),
-                        
               Container(
                   height: _height * 0.10,
                   width: _width * 0.10,
@@ -65,23 +70,37 @@ class _PracticaPageState extends State<PracticaPage> {
               Row(
                 children: [
                   Spacer(),
-                  GestureDetector( 
+                  GestureDetector(
+                    onTap: () async {
+                      //await: dar paso a entrar a la otra pagina, realizar alguna accion y devolverme.
+                      await Navigator.push(context,
+                          MaterialPageRoute(builder: (_) {
+                        return UserFormPage(
+                            userList: _userList,
+                            data: "pasando data",
+                            color: Colors.indigo,
+                            number: 123,
+                            decimal: 123);
+                      }));
 
-                    onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (_){
-                    return UserFormPage (data: "pasando data");
-
-                    }));
+                      setState(() {});
                     },
                     child: Container(
-                      child: Center(child: Text( "Formulario", style: TextStyle( color: Colors.white))),
+                        child: Center(
+                            child: Text("Formulario",
+                                style: TextStyle(color: Colors.white))),
                         height: _height * 0.1,
                         width: _width * 0.1,
                         color: Colors.red),
                   ),
-                      Spacer(),
+                  Spacer(),
                 ],
-              )
+              ),
+              // DashboardWidget(
+              //   count: _userList.length,
+              //   title: "Company",
+
+              // )
             ],
           )),
       floatingActionButton: FloatingActionButton(

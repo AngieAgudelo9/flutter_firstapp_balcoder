@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firstapp_balcoder/ui/company/company_form_page.dart';
+import 'package:flutter_firstapp_balcoder/ui/company/company_list_page.dart';
 import 'package:flutter_firstapp_balcoder/ui/practica_page.dart';
+import 'package:flutter_firstapp_balcoder/ui/user/model/user_model.dart';
+import 'package:flutter_firstapp_balcoder/ui/user/user_form_page.dart';
 
 
 void main() {
@@ -7,13 +11,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "My first App",
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: PracticaPage(),
+      home: CompanyListPage (),
     );
   }
 }
